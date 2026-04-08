@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASTRO Letters — Bonnesante Medicals</title>
+
+  <!-- PWA Meta -->
+  <meta name="description" content="Official letterhead generator for Bonnesante Medicals (ASTRO BSM)">
+  <meta name="theme-color" content="#1a3a8a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ASTRO Letters">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ======== APP HEADER ======== -->
+  <header class="app-header no-print">
+    <div class="brand">
+      <img src="assets/logo.png" alt="ASTRO BSM Logo" width="40" height="40">
+      <div>
+        <h1>ASTRO LETTERS</h1>
+        <p>Bonnesante Medicals Official Letterhead</p>
+      </div>
+    </div>
+    <button class="install-btn" id="install-btn" aria-label="Install App">Install App</button>
+  </header>
+
+  <div class="container">
+
+    <!-- ======== FORM PANEL ======== -->
+    <aside class="form-panel no-print" id="form-panel">
+      <h2>Compose Letter</h2>
+
+      <!-- Date -->
+      <div class="form-section">
+        <h3>Date</h3>
+        <input type="date" id="f_date">
+      </div>
+
+      <!-- Recipient -->
+      <div class="form-section">
+        <h3>Recipient</h3>
+        <label for="f_recip_title">Title / Designation</label>
+        <input type="text" id="f_recip_title" placeholder="e.g. The Director,">
+        <label for="f_recip_org">Organisation / Department</label>
+        <textarea id="f_recip_org" rows="3" placeholder="Drug Evaluation and Research&#10;NAFDAC Office&#10;Isolo, Lagos&#10;Nigeria"></textarea>
+      </div>
+
+      <!-- Salutation -->
+      <div class="form-section">
+        <h3>Salutation</h3>
+        <select id="f_salutation">
+          <option value="Dear Sir">Dear Sir</option>
+          <option value="Dear Sir/Madam">Dear Sir/Madam</option>
+          <option value="Dear Madam">Dear Madam</option>
+          <option value="Dear Dr.">Dear Dr.</option>
+          <option value="Dear Prof.">Dear Prof.</option>
+          <option value="To Whom It May Concern">To Whom It May Concern</option>
+        </select>
+        <label for="f_sal_name">Custom name (optional)</label>
+        <input type="text" id="f_sal_name" placeholder="Leave blank for generic, or type a name">
+      </div>
+
+      <!-- Subject -->
+      <div class="form-section">
+        <h3>Subject Line</h3>
+        <input type="text" id="f_subject" placeholder="APPLICATION FOR LAYOUT DESK REVIEW...">
+      </div>
+
+      <!-- Body -->
+      <div class="form-section">
+        <h3>Letter Body</h3>
+        <label for="f_body_open">Opening Paragraph</label>
+        <textarea id="f_body_open" rows="4" placeholder="We write to formally apply for..."></textarea>
+        <label for="f_body_mid">Middle Paragraph(s)</label>
+        <textarea id="f_body_mid" rows="5" placeholder="Additional details, context, or explanations..."></textarea>
+        <label>Bullet Points (optional)</label>
+        <div id="bullet-list"></div>
+        <button class="add-bullet" id="btn-add-bullet" type="button">+ Add Bullet Point</button>
+        <label for="f_body_close" style="margin-top:10px;">Closing Paragraph</label>
+        <textarea id="f_body_close" rows="3" placeholder="We are committed to maintaining the highest standards..."></textarea>
+      </div>
+
+      <!-- Sign-off -->
+      <div class="form-section">
+        <h3>Sign-off</h3>
+        <select id="f_closing">
+          <option value="Yours sincerely,">Yours sincerely,</option>
+          <option value="Yours faithfully,">Yours faithfully,</option>
+          <option value="Best regards,">Best regards,</option>
+          <option value="Kind regards,">Kind regards,</option>
+          <option value="Respectfully,">Respectfully,</option>
+          <option value="Thank you,">Thank you,</option>
+        </select>
+      </div>
+
+      <!-- Signatory -->
+      <div class="form-section">
+        <h3>Signatory</h3>
+        <div class="row">
+          <div><label for="f_sig_name">Full Name</label><input type="text" id="f_sig_name" value="Dr. E.C. Nnadi"></div>
+          <div><label for="f_sig_title">Title</label><input type="text" id="f_sig_title" value="Director, Bonnesante Medicals"></div>
+        </div>
+        <div class="row">
+          <div><label for="f_sig_phone">Phone</label><input type="tel" id="f_sig_phone" value="08033328385"></div>
+          <div><label for="f_sig_email">Email (optional)</label><input type="email" id="f_sig_email" placeholder=""></div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="btn-row">
+        <button class="btn btn-preview" id="btn-preview" type="button">&#9654; Preview</button>
+        <button class="btn btn-pdf" id="btn-pdf" type="button">&#9660; Download PDF</button>
+        <button class="btn btn-clear" id="btn-clear" type="button">&#10005; Clear</button>
+      </div>
+    </aside>
+
+    <!-- ======== PREVIEW PANEL ======== -->
+    <main class="preview-panel">
+      <p class="preview-label no-print">Live Preview</p>
+      <div class="preview-frame">
+        <div class="letter-page" id="letter-page">
+          <div id="placeholder-msg" style="display:flex;align-items:center;justify-content:center;min-height:500px;color:#aaa;font-size:16px;text-align:center;padding:40px;">
+            Fill in the form and click <strong style="margin:0 6px;">Preview</strong> to see your letter.
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scripts (defer for fast first paint) -->
+  <script src="js/letter-template.js"></script>
+  <script src="js/pdf-generator.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

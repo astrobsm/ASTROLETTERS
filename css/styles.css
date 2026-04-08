@@ -1,0 +1,278 @@
+/* ================================================================
+   ASTRO LETTERS — Bonnesante Medicals Letterhead PWA
+   Main Stylesheet
+   ================================================================ */
+
+:root {
+  --brand-blue: #1a3a8a;
+  --brand-blue-light: #2952b8;
+  --brand-blue-dark: #0f2460;
+  --brand-accent: #3b7ddd;
+  --bg: #f4f5f7;
+  --card: #fff;
+  --text: #1a1a2e;
+  --muted: #6b7280;
+  --border: #d1d5db;
+  --radius: 8px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 2px 10px rgba(0,0,0,0.12);
+}
+
+/* ========== RESET ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== APP HEADER ========== */
+.app-header {
+  background: linear-gradient(135deg, var(--brand-blue-dark), var(--brand-blue), var(--brand-accent));
+  color: #fff;
+  padding: 16px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app-header .brand { display: flex; align-items: center; gap: 12px; }
+.app-header .brand img { width: 40px; height: 40px; border-radius: 6px; }
+.app-header h1 { font-size: 22px; font-weight: 800; letter-spacing: 2px; }
+.app-header p { font-size: 12px; opacity: 0.75; margin-top: 2px; letter-spacing: 0.5px; }
+.app-header .install-btn {
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  color: #fff; padding: 8px 16px; border-radius: 6px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  display: none; transition: background 0.2s;
+}
+.app-header .install-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* ========== LAYOUT ========== */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  gap: 24px;
+}
+@media (max-width: 1200px) { .container { flex-direction: column; } }
+
+/* ========== FORM PANEL ========== */
+.form-panel {
+  flex: 0 0 460px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  overflow-y: auto;
+  max-height: calc(100vh - 100px);
+  position: sticky;
+  top: 16px;
+}
+@media (max-width: 1200px) {
+  .form-panel { flex: none; max-height: none; position: static; }
+}
+.form-panel h2 {
+  font-size: 18px; font-weight: 700; margin-bottom: 16px;
+  color: var(--brand-blue);
+  border-bottom: 2px solid var(--brand-blue);
+  padding-bottom: 6px;
+}
+.form-section { margin-bottom: 18px; }
+.form-section h3 {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--muted); margin-bottom: 8px;
+}
+
+/* --- Form controls --- */
+label {
+  display: block; font-size: 12px; font-weight: 600;
+  margin-bottom: 3px; color: #374151;
+}
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 5px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  background: #fafbfc;
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 10px;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none; border-color: var(--brand-blue); background: #fff;
+}
+textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+.row { display: flex; gap: 10px; }
+.row > div { flex: 1; }
+
+/* Bullet items */
+.bullet-item { display: flex; gap: 6px; align-items: start; margin-bottom: 6px; }
+.bullet-item input { flex: 1; }
+.bullet-item button {
+  flex-shrink: 0; width: 28px; height: 34px;
+  border: none; background: #ef4444; color: #fff;
+  border-radius: 4px; cursor: pointer; font-size: 16px;
+}
+.add-bullet {
+  background: none; border: 1px dashed var(--brand-blue);
+  color: var(--brand-blue); padding: 6px 12px; border-radius: 4px;
+  cursor: pointer; font-size: 12px; font-weight: 600;
+}
+.add-bullet:hover { background: rgba(26,58,138,0.05); }
+
+/* --- Buttons --- */
+.btn-row { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+.btn {
+  flex: 1; padding: 12px 16px; border: none; border-radius: 5px;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+  cursor: pointer; letter-spacing: 0.5px; transition: background 0.2s;
+  text-transform: uppercase; min-width: 110px; text-align: center;
+}
+.btn-preview { background: var(--brand-blue); color: #fff; }
+.btn-preview:hover { background: var(--brand-blue-light); }
+.btn-pdf { background: #059669; color: #fff; }
+.btn-pdf:hover { background: #047857; }
+.btn-clear { background: #6b7280; color: #fff; }
+.btn-clear:hover { background: #4b5563; }
+.btn:disabled { opacity: 0.6; cursor: wait; }
+
+/* ========== PREVIEW PANEL ========== */
+.preview-panel { flex: 1; min-width: 0; }
+.preview-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--muted); margin-bottom: 8px;
+}
+.preview-frame {
+  background: #fff; border-radius: var(--radius);
+  box-shadow: var(--shadow-md); overflow: hidden;
+}
+
+/* ================================================================
+   LETTER PAGE — A4 dimensions (794px × 1123px ≈ 210mm × 297mm @96dpi)
+   ================================================================ */
+.letter-page {
+  width: 794px;
+  min-height: 1123px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: #111;
+  background: #fff;
+  font-size: 12pt;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Letterhead Header --- */
+.lh-header { position: relative; padding: 0; overflow: hidden; }
+.lh-header-bg {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 18px 30px 14px;
+  background: linear-gradient(135deg,
+    var(--brand-blue-dark) 0%,
+    var(--brand-blue) 50%,
+    var(--brand-accent) 100%);
+}
+.lh-header-bg::before {
+  content: ''; position: absolute; left: 0; top: 0;
+  width: 0; height: 0;
+  border-left: 80px solid rgba(255,255,255,0.08);
+  border-bottom: 120px solid transparent;
+}
+.lh-header-bg::after {
+  content: ''; position: absolute; left: 50px; top: 0;
+  width: 0; height: 0;
+  border-left: 50px solid rgba(255,255,255,0.05);
+  border-bottom: 90px solid transparent;
+}
+
+.lh-logo { flex-shrink: 0; width: 88px; height: 72px; margin-right: 18px; position: relative; z-index: 1; }
+.lh-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; }
+
+.lh-brand { position: relative; z-index: 1; color: #fff; }
+.lh-brand h1 {
+  font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 900;
+  letter-spacing: 4px; margin-bottom: 1px; text-transform: uppercase;
+}
+.lh-brand .tagline1 { font-size: 12px; font-weight: 600; letter-spacing: 1px; opacity: 0.95; }
+.lh-brand .tagline2 { font-size: 10px; font-weight: 500; letter-spacing: 5px; opacity: 0.8; margin-top: 2px; }
+
+.lh-address-bar {
+  background: rgba(26,58,138,0.06);
+  padding: 6px 30px; font-size: 9px;
+  color: #555; border-bottom: 1px solid #e5e7eb;
+}
+
+/* --- Letter Body --- */
+.lh-body { padding: 20px 40px 10px; flex: 1; }
+.lh-date { text-align: right; font-size: 11pt; margin-bottom: 18px; }
+.lh-recipient { margin-bottom: 10px; font-size: 11pt; line-height: 1.5; }
+.lh-recipient p { margin: 0; }
+.lh-recipient .bold { font-weight: 700; }
+.lh-salutation { margin-bottom: 12px; font-size: 11pt; }
+.lh-subject {
+  text-align: center; font-weight: 700; font-size: 11pt;
+  margin-bottom: 16px; text-transform: uppercase;
+  text-decoration: underline; line-height: 1.4;
+}
+.lh-content { font-size: 11pt; line-height: 1.7; text-align: justify; }
+.lh-content p { margin-bottom: 12px; }
+.lh-content ul { margin: 8px 0 12px 24px; }
+.lh-content ul li { margin-bottom: 6px; }
+.lh-content ul li strong { font-weight: 700; }
+
+/* --- Sign-off --- */
+.lh-closing { margin-top: 18px; font-size: 11pt; }
+.lh-signature { margin: 12px 0 4px; }
+.lh-signature img { width: 160px; height: auto; display: block; }
+.lh-signatory { font-size: 11pt; line-height: 1.4; }
+.lh-signatory .name { font-weight: 700; }
+
+/* --- Footer --- */
+.lh-footer {
+  margin-top: auto;
+  background: linear-gradient(135deg, var(--brand-blue-dark), var(--brand-blue));
+  color: #fff; padding: 10px 30px; font-size: 9px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-shrink: 0;
+}
+.lh-footer a { color: #fff; text-decoration: none; }
+.lh-footer .ft-left span,
+.lh-footer .ft-right span { display: block; margin: 2px 0; }
+.lh-footer .ft-icon { display: inline-block; width: 14px; text-align: center; margin-right: 4px; }
+
+/* ========== TOAST NOTIFICATION ========== */
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: #1f2937; color: #fff; padding: 12px 20px;
+  border-radius: 8px; font-size: 13px; font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* ========== PRINT ========== */
+@media print {
+  body { background: #fff; }
+  .app-header, .form-panel, .preview-label, .toast, .no-print { display: none !important; }
+  .container { padding: 0; }
+  .preview-frame { box-shadow: none; }
+  .letter-page { width: 100%; min-height: 100vh; }
+}
