@@ -3,7 +3,7 @@
    Cache-first with network fallback for offline letterhead editing
    ================================================================ */
 
-var CACHE_NAME = 'astro-letters-v1';
+var CACHE_NAME = 'astro-letters-v2';
 var ASSETS = [
   './',
   './index.html',
